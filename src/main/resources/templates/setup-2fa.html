@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація — Крок 4</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card wide">
+        <div class="steps">
+            <span class="step done">✓</span>
+            <span class="step-line"></span>
+            <span class="step done">✓</span>
+            <span class="step-line"></span>
+            <span class="step done">✓</span>
+            <span class="step-line"></span>
+            <span class="step active">4</span>
+        </div>
+        <h1>Google Authenticator</h1>
+        <p class="subtitle">Відскануйте QR-код у додатку Google Authenticator і введіть згенерований код</p>
+
+        <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+        <div class="two-col">
+            <div class="qr-block">
+                <img th:src="'data:image/png;base64,' + ${qrCode}" alt="QR Code" class="qr-img">
+                <p class="secret-label">Або введіть секрет вручну:</p>
+                <code class="secret-code" th:text="${secret}"></code>
+            </div>
+
+            <div class="verify-block">
+                <div class="instructions">
+                    <p>1. Встановіть <strong>Google Authenticator</strong></p>
+                    <p>2. Натисніть <strong>+</strong> → <strong>Сканувати QR-код</strong></p>
+                    <p>3. Введіть 6-значний код нижче</p>
+                </div>
+
+                <form action="/register/setup-2fa" method="post">
+                    <div class="form-group">
+                        <label>Код з Google Authenticator</label>
+                        <input type="text" name="totpCode" placeholder="000000"
+                               maxlength="6" pattern="[0-9]{6}" required autofocus class="otp-input">
+                    </div>
+                    <button type="submit" class="btn">Завершити реєстрацію →</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

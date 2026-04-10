@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація — Крок 1</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="steps">
+            <span class="step active">1</span>
+            <span class="step-line"></span>
+            <span class="step">2</span>
+            <span class="step-line"></span>
+            <span class="step">3</span>
+            <span class="step-line"></span>
+            <span class="step">4</span>
+        </div>
+        <h1>Реєстрація</h1>
+        <p class="subtitle">Введіть номер телефону для отримання коду підтвердження у Telegram</p>
+
+        <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+        <form action="/register/send-otp" method="post">
+            <div class="form-group">
+                <label>Номер телефону</label>
+                <input type="text" name="phoneNumber" placeholder="+380991234567" required autofocus>
+            </div>
+            <button type="submit" class="btn">Надіслати код →</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

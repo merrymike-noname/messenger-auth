@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація завершена</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="success-icon">✓</div>
+        <h1>Акаунт створено!</h1>
+        <p class="subtitle">Ваш акаунт успішно зареєстровано з двофакторною автентифікацією.</p>
+        <div class="success-details">
+            <p>✅ Номер телефону підтверджено</p>
+            <p>✅ Пароль встановлено</p>
+            <p>✅ Google Authenticator налаштовано</p>
+        </div>
+        <a href="/register" class="btn">Зареєструвати ще один акаунт</a>
+    </div>
+</div>
+</body>
+</html>
