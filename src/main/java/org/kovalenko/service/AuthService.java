@@ -77,6 +77,27 @@ public class AuthService {
         return valid;
     }
 
+    // Відновлення паролю: надіслати OTP тільки якщо акаунт існує
+    public void sendOtpForRecovery(String phoneNumber) {
+        Account account = accountRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+
+        String otp = String.format("%06d", new Random().nextInt(999999));
+        account.setOtpCode(otp);
+        account.setOtpExpiresAt(LocalDateTime.now().plusMinutes(otpExpiryMinutes));
+        accountRepository.save(account);
+
+        telegramService.sendOtp(otp);
+    }
+
+    // Відновлення паролю: встановити новий пароль
+    public void resetPassword(String phoneNumber, String newPassword) {
+        Account account = accountRepository.findByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
+        account.setPasswordHash(passwordEncoder.encode(newPassword));
+        accountRepository.save(account);
+    }
+
     public Account getAccount(String phoneNumber) {
         return accountRepository.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new RuntimeException("Account not found"));

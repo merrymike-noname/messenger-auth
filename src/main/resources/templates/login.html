@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід — Крок 1</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="steps">
+            <span class="step active">1</span>
+            <span class="step-line"></span>
+            <span class="step">2</span>
+            <span class="step-line"></span>
+            <span class="step">3</span>
+        </div>
+        <h1>Вхід</h1>
+        <p class="subtitle">Введіть номер телефону та пароль</p>
+
+        <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label>Номер телефону</label>
+                <input type="text" name="phoneNumber" placeholder="+380991234567" required autofocus>
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" name="password" placeholder="Введіть пароль" required>
+            </div>
+            <button type="submit" class="btn">Далі →</button>
+        </form>
+
+        <a href="/recovery" class="link">Забули пароль?</a>
+        <a href="/register" class="link">Немає акаунта? Зареєструватись</a>
+    </div>
+</div>
+</body>
+</html>

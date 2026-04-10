@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Вхід — PIN-код</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="steps">
+      <span class="step done">✓</span>
+      <span class="step-line"></span>
+      <span class="step done">✓</span>
+      <span class="step-line"></span>
+      <span class="step active">3</span>
+    </div>
+    <h1>Введіть PIN-код</h1>
+    <p class="subtitle">Для підтвердження особи введіть ваш PIN-код</p>
+
+    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+    <form action="/login/pin" method="post">
+      <div class="form-group">
+        <label>PIN-код</label>
+        <input type="password" name="pin" placeholder="000000"
+               maxlength="6" pattern="[0-9]{4,6}" required autofocus class="otp-input">
+      </div>
+      <button type="submit" class="btn">Увійти →</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

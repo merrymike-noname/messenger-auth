@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Вхід — Крок 3</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+  <div class="card">
+    <div class="steps">
+      <span class="step done">✓</span>
+      <span class="step-line"></span>
+      <span class="step done">✓</span>
+      <span class="step-line"></span>
+      <span class="step active">3</span>
+    </div>
+    <h1>Створення PIN-коду</h1>
+    <p class="subtitle">Придумайте PIN-код від 4 до 6 цифр. Він буде запитуватись кожні 30 хвилин</p>
+
+    <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+    <form action="/login/setup-pin" method="post">
+      <div class="form-group">
+        <label>PIN-код</label>
+        <input type="password" name="pin" placeholder="4-6 цифр"
+               maxlength="6" pattern="[0-9]{4,6}" required autofocus class="otp-input">
+      </div>
+      <div class="form-group">
+        <label>Підтвердження PIN-коду</label>
+        <input type="password" name="confirmPin" placeholder="4-6 цифр"
+               maxlength="6" pattern="[0-9]{4,6}" required class="otp-input">
+      </div>
+      <button type="submit" class="btn">Увійти →</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>

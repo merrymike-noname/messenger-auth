@@ -34,6 +34,12 @@ public class Account {
     @Column(name = "otp_expires_at")
     private LocalDateTime otpExpiresAt;
 
+    @Column(name = "pin_hash")
+    private String pinHash;
+
+    @Column(name = "pin_last_asked_at")
+    private LocalDateTime pinLastAskedAt;
+
     @Column(name = "created_at")
     private LocalDateTime createdAt = LocalDateTime.now();
 }

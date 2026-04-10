@@ -18,3 +18,4 @@ telegram.bot.chat-id=
 
 # App settings
 app.otp.expiry-minutes=5
+app.pin.interval-minutes=30
